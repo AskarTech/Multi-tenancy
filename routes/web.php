@@ -9,7 +9,7 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    $users=User::where('tenant_id', auth()->user()->tenant_id)->get();
+    $users=User::tenanting()->get();
     return view('dashboard', ['users' => $users]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
