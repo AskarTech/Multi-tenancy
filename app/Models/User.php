@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Attributes\Scope;
@@ -56,6 +57,6 @@ class User extends Authenticatable
     #[Scope]
     protected function tenanting(Builder $query): void
     {
-        $query->where('tenant_id', auth()->user()->tenant_id);
+        $query->where('tenant_id', Auth::user()->tenant_id);
     }
 }
